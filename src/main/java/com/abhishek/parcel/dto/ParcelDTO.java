@@ -1,0 +1,9 @@
+package com.abhishek.parcel.dto;
+
+public class ParcelDTO {
+    public String customerName;
+    public String deliveryAddress;
+    public String contactNumber;
+    public String size;
+    public Double weight;
+}

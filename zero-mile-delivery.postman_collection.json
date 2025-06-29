@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "acb59b90-02d4-45f8-a05a-4f5bf538ae01",
+		"name": "zero-mile-delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26076387"
+	},
+	"item": [
+		{
+			"name": "Get All Parcels",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huX2RvZSIsInJvbGVzIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzM4MTc3OTY2LCJleHAiOjE3MzgzNTA3NjZ9.7F-59dRqlp4iMj3gSl36CjaUFz2SqDwNGwXvsGpDEtSxV0LZIja7_eh_u-DkmLp4qciA_QaLElo-cZkoWeKr4Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"originalUrl\": \"https://example.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/parcels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"parcels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Parcel By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/parcels/20767fd5-029c-4e09-9ff4-515362b39cb9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"parcels",
+						"20767fd5-029c-4e09-9ff4-515362b39cb9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Parcel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"Charlie\",\r\n    \"deliveryAddress\": \"303 River Rd\",\r\n    \"contactNumber\": \"9990003333\",\r\n    \"size\": \"Large\",\r\n    \"weight\": 4.1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/parcels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"parcels"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
