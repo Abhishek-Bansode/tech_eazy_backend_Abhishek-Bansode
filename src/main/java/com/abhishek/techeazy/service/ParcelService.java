@@ -15,12 +15,13 @@ public class ParcelService {
         this.parcelRepo = parcelRepo;
     }
 
-    public List<Parcel> getAllParcels() {
-        return parcelRepo.findAll();
+    public List<ParcelDTO> getAllParcels() {
+        return parcelRepo.findAll().stream().map(this::toParcelDTO).toList();
     }
 
-    public Parcel getParcelById(String id) {
-        return parcelRepo.findById(id).orElseThrow(() -> new RuntimeException("Parcel not found"));
+    public ParcelDTO getParcelById(String id) {
+        Parcel parcel =  parcelRepo.findById(id).orElseThrow(() -> new RuntimeException("Parcel not found"));
+        return toParcelDTO(parcel);
     }
 
     public Parcel createParcel(ParcelDTO dto) {
@@ -31,5 +32,16 @@ public class ParcelService {
         p.setSize(dto.size);
         p.setWeight(dto.weight);
         return parcelRepo.save(p);
+    }
+
+    private ParcelDTO toParcelDTO(Parcel p) {
+        ParcelDTO dto = new ParcelDTO();
+        dto.id = p.getId();
+        dto.customerName = p.getCustomerName();
+        dto.deliveryAddress = p.getDeliveryAddress();
+        dto.contactNumber = p.getContactNumber();
+        dto.size = p.getSize();
+        dto.weight = p.getWeight();
+        return dto;
     }
 }

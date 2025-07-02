@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Parcel {
@@ -17,12 +19,16 @@ public class Parcel {
     private Double weight;
     private String deliveryStatus; // PENDING, OUT_FOR_DELIVERY, DELIVERED, FAILED
 
+    @ManyToOne
+    @JoinColumn(name = "delivery_order_id")
+    private DeliveryOrder deliveryOrder;
+
     // Getters and setters
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId() {
         this.id = id;
     }
 
@@ -72,5 +78,13 @@ public class Parcel {
 
     public void setDeliveryStatus(String deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+    public DeliveryOrder getDeliveryOrder() {
+        return deliveryOrder;
+    }
+
+    public void setDeliveryOrder(DeliveryOrder deliveryOrder) {
+        this.deliveryOrder = deliveryOrder;
     }
 }

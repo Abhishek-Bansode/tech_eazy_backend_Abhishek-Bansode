@@ -24,13 +24,13 @@ public class ParcelController {
 
     // ✅ GET all parcels
     @GetMapping
-    public ResponseEntity<List<Parcel>> getAllParcels() {
+    public ResponseEntity<List<ParcelDTO>> getAllParcels() {
         return ResponseEntity.ok(parcelService.getAllParcels());
     }
 
     // ✅ GET parcel by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Parcel> getParcelById(@PathVariable String id) {
+    public ResponseEntity<ParcelDTO> getParcelById(@PathVariable String id) {
         return ResponseEntity.ok(parcelService.getParcelById(id));
     }
 
