@@ -1,16 +1,20 @@
 # Zero Mile Delivery System — Backend (Spring Boot)
 
-This project is a backend service for a logistics company that handles **last-mile parcel delivery** from a central warehouse. The system allows parcel creation, retrieval by tracking ID, and listing all parcels. It uses an in-memory H2 database and follows a minimal, RESTful API design with Spring Boot.
+This project is a backend service for a logistics company that handles **last-mile parcel delivery** from a central warehouse. It supports parcel creation, file-based order uploads by vendors, and tracking of delivery orders — all built using Spring Boot with DTO-based clean API responses.
 
 ---
 
 ## 🚀 Features
 
-- ✅ Create a new parcel with customer and delivery details
-- ✅ View all parcels received at the warehouse
-- ✅ Retrieve a parcel using a unique tracking ID
-- ✅ In-memory storage using H2
-- ✅ Clean and minimal Spring Boot setup
+- ✅ Create a new parcel (single entry)
+- ✅ View all parcels / view by tracking ID
+- ✅ Vendor registration with subscription type
+- ✅ Upload a file of parcel data linked to a delivery order
+- ✅ Associate delivery orders with vendors
+- ✅ Filter orders by vendor and date
+- ✅ View today's delivery orders
+- ✅ In-memory H2 database
+- ✅ Flat, recursive-free API responses using DTOs
 
 ---
 
@@ -23,31 +27,46 @@ This project is a backend service for a logistics company that handles **last-mi
 
 ---
 
-## 📦 API Endpoints
+## 📦 API Endpoints (v1)
 
-### 1. ➕ Create a Parcel
-**POST** `/api/v1/parcels`
+### 🔐 Vendors
 
-#### Sample Request Body:
-```json
-{
-  "customerName": "John Doe",
-  "deliveryAddress": "123 Main St",
-  "contactNumber": "9876543210",
-  "size": "Medium",
-  "weight": 2.5
-}
+| Method | Endpoint              | Description                     |
+|--------|-----------------------|---------------------------------|
+| POST   | `/api/v1/vendors`     | Create a vendor                 |
+| GET    | `/api/v1/vendors`     | List all vendors (paginated)    |
+| GET    | `/api/v1/vendors/{id}`| Get vendor by ID                |
+
+---
+
+### 📤 Parcels
+
+| Method | Endpoint                  | Description                      |
+|--------|---------------------------|----------------------------------|
+| POST   | `/api/v1/parcels`         | Create a single parcel           |
+| GET    | `/api/v1/parcels`         | Get all parcels                  |
+| GET    | `/api/v1/parcels/{id}`    | Get parcel by tracking ID        |
+
+---
+
+### 📁 Delivery Orders
+
+| Method | Endpoint                             | Description                                   |
+|--------|--------------------------------------|-----------------------------------------------|
+| POST   | `/api/v1/delivery-orders/upload`     | Upload a file containing parcels for an order |
+| GET    | `/api/v1/delivery-orders/today`      | View all today's delivery orders              |
+| GET    | `/api/v1/delivery-orders`            | Filter by `vendor` and `date` query params    |
+
+---
+
+### 📄 Sample Upload File Format
+
+Each line should represent a parcel (CSV-style):
+
 ```
-
-### 2. 📋 Get All Parcels
-**GET** `/api/v1/parcels`
-
-#### Returns a list of all stored parcels.
-
-### 3. 🔍 Get Parcel by Tracking ID
-**GET** `/api/v1/parcels/{id}`
-
-#### Replace {id} with the actual parcel ID received from creation or listing.
+Alice, 123 Park Ave, Small, 1.2
+Bob, 456 Maple St, Medium, 2.5
+```
 
 ## 🧪 How to Run Locally
 ### ✅ Prerequisites
@@ -57,10 +76,15 @@ This project is a backend service for a logistics company that handles **last-mi
 ### 🔧 Steps
 ``` bash
 git clone https://github.com/Abhishek-Bansode/tech_eazy_backend_Abhishek-Bansode
-cd tech_eazy_backend_Abhishek-Bansode
-./mvnw spring-boot:run
-
 ```
+``` bash
+cd tech_eazy_backend_Abhishek-Bansode
+```
+
+``` bash
+./mvnw spring-boot:run
+```
+
 ## 🗃️ H2 Database Access
 ### You can view data in-browser:
 
@@ -72,20 +96,23 @@ cd tech_eazy_backend_Abhishek-Bansode
 
  - Password: (leave blank)
 
-### Run:
+### To verify data:
 
 ``` sql
 SELECT * FROM PARCEL;
+SELECT * FROM DELIVERY_ORDER;
+SELECT * FROM VENDOR;
 ```
 
 ## 📮 Postman Collection
 ### The included file zero-mile-delivery.postman_collection.json contains:
 
-1. Create Parcel (POST)
-
-2. Get All Parcels (GET)
-
-3. Get Parcel by ID (GET)
+* Create Vendor
+* Create Parcel
+* Get Parcels
+* Upload Delivery Order (file)
+* Get Today’s Orders
+* Get Orders by Vendor and Date
 
 #### You can import this into Postman or use the raw JSON in any REST client.
 
@@ -95,14 +122,16 @@ SELECT * FROM PARCEL;
 src/
 ├── main/
 │   ├── java/com/abhishek/techeazy/
-│   │   ├── controller/       # REST APIs
-│   │   ├── dto/              # Request objects
+│   │   ├── controller/       # REST Controllers
+│   │   ├── dto/              # Request/Response DTOs
 │   │   ├── entity/           # JPA entities
-│   │   ├── repo/             # Repositories
-│   │   ├── service/          # Business logic
+│   │   ├── repo/             # Spring Data Repositories
+│   │   ├── service/          # Business Logic
 │   │   └── ParcelApplication.java
 │   └── resources/
-│       └── application.properties
+│       ├── application.properties
+│       └── parcels.txt (optional test file)
 ├── zero-mile-delivery.postman_collection.json
 └── README.md
+
 ```
