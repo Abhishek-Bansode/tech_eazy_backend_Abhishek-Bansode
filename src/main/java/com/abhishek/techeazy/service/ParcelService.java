@@ -1,10 +1,10 @@
-package com.abhishek.parcel.service;
+package com.abhishek.techeazy.service;
 
 import java.util.List;
 
-import com.abhishek.parcel.dto.ParcelDTO;
-import com.abhishek.parcel.entity.Parcel;
-import com.abhishek.parcel.repo.ParcelRepo;
+import com.abhishek.techeazy.dto.ParcelDTO;
+import com.abhishek.techeazy.entity.Parcel;
+import com.abhishek.techeazy.repo.ParcelRepo;
 import org.springframework.stereotype.Service;
 
 @Service

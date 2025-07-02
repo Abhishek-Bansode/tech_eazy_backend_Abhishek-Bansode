@@ -1,4 +1,4 @@
-package com.abhishek.parcel.entity;
+package com.abhishek.techeazy.entity;
 
 import java.util.UUID;
 

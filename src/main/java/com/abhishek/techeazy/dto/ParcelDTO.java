@@ -1,4 +1,4 @@
-package com.abhishek.parcel.dto;
+package com.abhishek.techeazy.dto;
 
 public class ParcelDTO {
     public String customerName;

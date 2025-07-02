@@ -1,10 +1,10 @@
-package com.abhishek.parcel.controller;
+package com.abhishek.techeazy.controller;
 
 import java.util.List;
 
-import com.abhishek.parcel.dto.ParcelDTO;
-import com.abhishek.parcel.entity.Parcel;
-import com.abhishek.parcel.service.ParcelService;
+import com.abhishek.techeazy.dto.ParcelDTO;
+import com.abhishek.techeazy.entity.Parcel;
+import com.abhishek.techeazy.service.ParcelService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

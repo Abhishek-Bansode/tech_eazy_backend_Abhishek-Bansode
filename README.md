@@ -94,7 +94,7 @@ SELECT * FROM PARCEL;
 
 src/
 ├── main/
-│   ├── java/com/example/parcel/
+│   ├── java/com/abhishek/techeazy/
 │   │   ├── controller/       # REST APIs
 │   │   ├── dto/              # Request objects
 │   │   ├── entity/           # JPA entities
