@@ -1,10 +1,10 @@
-package com.abhishek.parcel.controller;
+package com.abhishek.techeazy.controller;
 
 import java.util.List;
 
-import com.abhishek.parcel.dto.ParcelDTO;
-import com.abhishek.parcel.entity.Parcel;
-import com.abhishek.parcel.service.ParcelService;
+import com.abhishek.techeazy.dto.ParcelDTO;
+import com.abhishek.techeazy.entity.Parcel;
+import com.abhishek.techeazy.service.ParcelService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +24,13 @@ public class ParcelController {
 
     // ✅ GET all parcels
     @GetMapping
-    public ResponseEntity<List<Parcel>> getAllParcels() {
+    public ResponseEntity<List<ParcelDTO>> getAllParcels() {
         return ResponseEntity.ok(parcelService.getAllParcels());
     }
 
     // ✅ GET parcel by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Parcel> getParcelById(@PathVariable String id) {
+    public ResponseEntity<ParcelDTO> getParcelById(@PathVariable String id) {
         return ResponseEntity.ok(parcelService.getParcelById(id));
     }
 
