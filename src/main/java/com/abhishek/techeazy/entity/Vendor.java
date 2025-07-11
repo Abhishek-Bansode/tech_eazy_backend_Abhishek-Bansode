@@ -23,8 +23,8 @@ public class Vendor {
     @Enumerated(EnumType.STRING)
     private VendorSubscriptionType subscriptionType;
 
-//    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<DeliveryOrder> deliveryOrders;
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DeliveryOrder> deliveryOrders;
 
     // Getters and Setters
 
@@ -52,11 +52,11 @@ public class Vendor {
         this.subscriptionType = subscriptionType;
     }
 
-//    public List<DeliveryOrder> getDeliveryOrders() {
-//        return deliveryOrders;
-//    }
-//
-//    public void setDeliveryOrders(List<DeliveryOrder> deliveryOrders) {
-//        this.deliveryOrders = deliveryOrders;
-//    }
+    public List<DeliveryOrder> getDeliveryOrders() {
+        return deliveryOrders;
+    }
+
+    public void setDeliveryOrders(List<DeliveryOrder> deliveryOrders) {
+        this.deliveryOrders = deliveryOrders;
+    }
 }

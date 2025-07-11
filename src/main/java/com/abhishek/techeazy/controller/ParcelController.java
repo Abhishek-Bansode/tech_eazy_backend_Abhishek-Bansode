@@ -6,6 +6,7 @@ import com.abhishek.techeazy.dto.ParcelDTO;
 import com.abhishek.techeazy.entity.Parcel;
 import com.abhishek.techeazy.service.ParcelService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,19 +23,19 @@ public class ParcelController {
         this.parcelService = parcelService;
     }
 
-    // ✅ GET all parcels
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ParcelDTO>> getAllParcels() {
         return ResponseEntity.ok(parcelService.getAllParcels());
     }
 
-    // ✅ GET parcel by ID
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<ParcelDTO> getParcelById(@PathVariable String id) {
         return ResponseEntity.ok(parcelService.getParcelById(id));
     }
 
-    // ✅ POST create parcel
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Parcel> createParcel(@RequestBody ParcelDTO dto) {
         Parcel created = parcelService.createParcel(dto);

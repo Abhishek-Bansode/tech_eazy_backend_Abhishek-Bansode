@@ -8,6 +8,7 @@ import com.abhishek.techeazy.entity.DeliveryOrder;
 import com.abhishek.techeazy.service.DeliveryOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,20 +23,22 @@ public class DeliveryOrderController {
     @Autowired
     private DeliveryOrderService deliveryOrderService;
 
+    @PreAuthorize("hasRole('VENDOR')")
     @PostMapping("/upload")
     public DeliveryOrderDTO uploadOrder(
-            @RequestParam String vendorName,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate orderDate,
             @RequestParam MultipartFile file
             ) throws Exception {
-        return deliveryOrderService.uploadOrder(vendorName, orderDate, file);
+        return deliveryOrderService.uploadOrder(orderDate, file);
     }
 
+    @PreAuthorize("hasAnyRole('VENDOR', 'ADMIN')")
     @GetMapping("/today")
     public List<DeliveryOrderDTO> getTodayOrders() {
         return deliveryOrderService.getTodayOrders();
     }
 
+    @PreAuthorize("hasAnyRole('VENDOR', 'ADMIN')")
     @GetMapping
     public List<DeliveryOrder> getByVendorAndDate(
             @RequestParam String vendor,
