@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "acb59b90-02d4-45f8-a05a-4f5bf538ae01",
+		"_postman_id": "3baa0aeb-c741-4610-8acd-5e5d985dbf87",
 		"name": "zero-mile-delivery",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26076387"
+		"_exporter_id": "26076387",
+		"_collection_link": "https://winter-sunset-611503.postman.co/workspace/TechEazy-Consulting~4cefc176-56dc-425c-8cdd-d85b5a226e30/collection/26076387-3baa0aeb-c741-4610-8acd-5e5d985dbf87?action=share&source=collection_link&creator=26076387"
 	},
 	"item": [
 		{
@@ -20,7 +21,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huX2RvZSIsInJvbGVzIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzM4MTc3OTY2LCJleHAiOjE3MzgzNTA3NjZ9.7F-59dRqlp4iMj3gSl36CjaUFz2SqDwNGwXvsGpDEtSxV0LZIja7_eh_u-DkmLp4qciA_QaLElo-cZkoWeKr4Q",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2ZW5kb3IxIiwiaWF0IjoxNzUyMjI4NDA0LCJleHAiOjE3NTIyMzIwMDR9.RfH8Bz7kLaHmo92G4BRI0g5ctJHDKTZ0NUaNb3-kWZTSteKTrBkT6K-wZqgHRn1QMaNbJKj1QZ1nxLd_oE-oXw",
 									"type": "string"
 								}
 							]
@@ -50,6 +51,16 @@
 				{
 					"name": "Create Parcel",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2ZW5kb3IxIiwiaWF0IjoxNzUyMjI4NDA0LCJleHAiOjE3NTIyMzIwMDR9.RfH8Bz7kLaHmo92G4BRI0g5ctJHDKTZ0NUaNb3-kWZTSteKTrBkT6K-wZqgHRn1QMaNbJKj1QZ1nxLd_oE-oXw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -112,7 +123,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTUzMjc4MiwiZXhwIjoxNzUxNTM2MzgyfQ.0kqkEFZuZF1x_yP1VUpXUi3Pr2hGwTIezZT0jnhh5GZX0r7fi4Ywo7Frx-9PHxPPXMiL6XS9QBihNCl2NjGszA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEiLCJpYXQiOjE3NTIyMjI1MTksImV4cCI6MTc1MjIyNjExOX0.X52xjptWk4mv15ewbBNq14CJYP2zMOqFUaYfbpidqbyvItH_ZJFmzMXVSy2G5EvdSdrces810QQ2spup2S8ZMg",
 									"type": "string"
 								}
 							]
@@ -153,7 +164,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTUzMjc4MiwiZXhwIjoxNzUxNTM2MzgyfQ.0kqkEFZuZF1x_yP1VUpXUi3Pr2hGwTIezZT0jnhh5GZX0r7fi4Ywo7Frx-9PHxPPXMiL6XS9QBihNCl2NjGszA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTczNzkzNiwiZXhwIjoxNzUxNzQxNTM2fQ.0_pghaSUD95kFob6PXif-EOG293zFD0jiaxOa0EBB6vB2jF91zjK2C3DXPckuIKZcDLljEDck55OdeTsCtJzUQ",
 									"type": "string"
 								}
 							]
@@ -185,7 +196,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTUzMjc4MiwiZXhwIjoxNzUxNTM2MzgyfQ.0kqkEFZuZF1x_yP1VUpXUi3Pr2hGwTIezZT0jnhh5GZX0r7fi4Ywo7Frx-9PHxPPXMiL6XS9QBihNCl2NjGszA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTc4Nzk2NCwiZXhwIjoxNzUxNzkxNTY0fQ.JT-zdmIUeUPhZdAYIINI4oIf6RRDXLiUczEjujRBqReIwnNzk2IgsPWLylQgsAL_F4fO8d0lq3tLzW-_wVF7cQ",
 									"type": "string"
 								}
 							]
@@ -223,14 +234,46 @@
 			"name": "Delivery Orders",
 			"item": [
 				{
-					"name": "upload orders",
+					"name": "Get Today's Orders",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTUzMjc4MiwiZXhwIjoxNzUxNTM2MzgyfQ.0kqkEFZuZF1x_yP1VUpXUi3Pr2hGwTIezZT0jnhh5GZX0r7fi4Ywo7Frx-9PHxPPXMiL6XS9QBihNCl2NjGszA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2ZW5kb3IxIiwiaWF0IjoxNzUyMjI4NDA0LCJleHAiOjE3NTIyMzIwMDR9.RfH8Bz7kLaHmo92G4BRI0g5ctJHDKTZ0NUaNb3-kWZTSteKTrBkT6K-wZqgHRn1QMaNbJKj1QZ1nxLd_oE-oXw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/delivery-orders/today",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"delivery-orders",
+								"today"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload-orders-new",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2ZW5kb3IxIiwiaWF0IjoxNzUyMjI4NDA0LCJleHAiOjE3NTIyMzIwMDR9.RfH8Bz7kLaHmo92G4BRI0g5ctJHDKTZ0NUaNb3-kWZTSteKTrBkT6K-wZqgHRn1QMaNbJKj1QZ1nxLd_oE-oXw",
 									"type": "string"
 								}
 							]
@@ -240,11 +283,6 @@
 						"body": {
 							"mode": "formdata",
 							"formdata": [
-								{
-									"key": "vendorName",
-									"value": "Myntra",
-									"type": "text"
-								},
 								{
 									"key": "orderDate",
 									"value": "2025-07-02",
@@ -273,38 +311,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Get Today's Orders",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmhpc2hlayIsImlhdCI6MTc1MTUzMjc4MiwiZXhwIjoxNzUxNTM2MzgyfQ.0kqkEFZuZF1x_yP1VUpXUi3Pr2hGwTIezZT0jnhh5GZX0r7fi4Ywo7Frx-9PHxPPXMiL6XS9QBihNCl2NjGszA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/delivery-orders/today",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"delivery-orders",
-								"today"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -312,13 +318,13 @@
 			"name": "Jwt-Auth",
 			"item": [
 				{
-					"name": "register-user",
+					"name": "register",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"abhishek\",\r\n  \"password\": \"secret123\"\r\n}\r\n",
+							"raw": "{\r\n  \"username\": \"vendor1\",\r\n  \"password\": \"vendorpass\",\r\n  \"role\": \"VENDOR\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,7 +332,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/register",
+							"raw": "http://localhost:8080/api/v1/public/auth/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -335,6 +341,7 @@
 							"path": [
 								"api",
 								"v1",
+								"public",
 								"auth",
 								"register"
 							]
@@ -343,7 +350,7 @@
 					"response": []
 				},
 				{
-					"name": "login-user",
+					"name": "login",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -352,7 +359,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"abhishek\",\r\n  \"password\": \"secret123\"\r\n}\r\n",
+							"raw": "{\r\n  \"username\": \"vendor1\",\r\n  \"password\": \"vendorpass\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -360,7 +367,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/login",
+							"raw": "http://localhost:8080/api/v1/public/auth/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -369,8 +376,37 @@
 							"path": [
 								"api",
 								"v1",
+								"public",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "track-parcel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/public/parcels/4947ae51-c0fb-417a-a94d-c407c27c8e83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"parcels",
+								"4947ae51-c0fb-417a-a94d-c407c27c8e83"
 							]
 						}
 					},

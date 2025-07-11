@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Parcel {
     @Id
-    private String id = UUID.randomUUID().toString();
+    private String trackingId = UUID.randomUUID().toString();
 
     private String customerName;
     private String deliveryAddress;
@@ -24,12 +24,12 @@ public class Parcel {
     private DeliveryOrder deliveryOrder;
 
     // Getters and setters
-    public String getId() {
-        return id;
+    public String getTrackingId() {
+        return trackingId;
     }
 
     public void setId() {
-        this.id = id;
+        this.trackingId = trackingId;
     }
 
     public String getCustomerName() {

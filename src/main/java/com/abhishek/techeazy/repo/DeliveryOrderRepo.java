@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DeliveryOrderRepo extends JpaRepository<DeliveryOrder, Long> {
     List<DeliveryOrder> findByOrderDate(LocalDate orderDate);
+
     List<DeliveryOrder> findByVendor_NameAndOrderDate(String vendorName, LocalDate orderDate);
 }

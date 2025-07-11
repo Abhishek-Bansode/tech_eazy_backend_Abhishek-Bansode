@@ -1,6 +1,7 @@
 package com.abhishek.techeazy.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ import com.abhishek.techeazy.repo.DeliveryOrderRepo;
 import com.abhishek.techeazy.repo.ParcelRepo;
 import com.abhishek.techeazy.repo.VendorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,49 +33,58 @@ public class DeliveryOrderService {
     @Autowired
     private VendorRepo vendorRepo;
 
-    public DeliveryOrderDTO uploadOrder(String vendorName, LocalDate date, MultipartFile file) throws Exception {
-        Vendor vendor = vendorRepo.findByName(vendorName);
-        if (vendor == null) {
-            throw new RuntimeException("Vendor not found");
+    public DeliveryOrderDTO uploadOrder(LocalDate date, MultipartFile file) throws Exception {
+        // Extract the logged-in vendor using SecurityContextHolder
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails userDetails) {
+            username = userDetails.getUsername();
+        } else {
+            username = principal.toString();
         }
 
-        List<Parcel> parcels = new ArrayList<>();
+        Vendor loggedInVendor = vendorRepo.findByName(username);
+        if (loggedInVendor == null) {
+            throw new RuntimeException("Vendor not found for username: " + username);
+        }
 
+        List<Parcel> parcels = getParcelList(file);
+
+        DeliveryOrder order = new DeliveryOrder();
+        order.setVendor(loggedInVendor);
+        order.setOrderDate(date);
+        order.setFileName(file.getOriginalFilename());
+        order.setParcels(parcels);
+        parcels.forEach(p -> p.setDeliveryOrder(order));
+
+        DeliveryOrder saved = deliveryOrderRepo.save(order);
+
+        DeliveryOrderDTO dto = new DeliveryOrderDTO();
+        dto.setVendorName(loggedInVendor.getName());
+        dto.setOrderDate(saved.getOrderDate());
+        dto.setTotalOrders(parcels.size());
+        dto.setFileDownloadLink("api/v1/delivery-orders/download/" + saved.getId());
+        dto.setParcels(saved.getParcels().stream().map(this::toParcelDTO).toList());
+
+        return dto;
+    }
+
+    private static List<Parcel> getParcelList(MultipartFile file) throws IOException {
+        List<Parcel> parcels = new ArrayList<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
         String line;
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(",");
             if (parts.length >= 4) {
                 Parcel p = new Parcel();
-
                 p.setCustomerName(parts[0].trim());
                 p.setDeliveryAddress(parts[1].trim());
                 p.setSize(parts[2].trim());
                 p.setWeight(Double.parseDouble(parts[3].trim()));
-
                 parcels.add(p);
             }
         }
-
-        DeliveryOrder order = new DeliveryOrder();
-        order.setVendor(vendor);
-        order.setOrderDate(date);
-        order.setFileName(file.getOriginalFilename());
-        order.setParcels(parcels);
-
-        parcels.forEach(p -> p.setDeliveryOrder(order));
-
-        DeliveryOrder saved = deliveryOrderRepo.save(order);
-
-        DeliveryOrderDTO dto = new DeliveryOrderDTO();
-        dto.setVendorName(vendor.getName());
-        dto.setOrderDate(saved.getOrderDate());
-        dto.setTotalOrders(parcels.size());
-        dto.setFileDownloadLink("api/v1/delivery-orders/download/" + saved.getId());
-        dto.setParcels(saved.getParcels().stream()
-                .map(this::toParcelDTO).toList());
-
-        return dto;
+        return parcels;
     }
 
     public List<DeliveryOrderDTO> getTodayOrders() {
@@ -89,7 +101,7 @@ public class DeliveryOrderService {
 
     private ParcelDTO toParcelDTO(Parcel p) {
         ParcelDTO dto = new ParcelDTO();
-        dto.id = p.getId();
+        dto.id = p.getTrackingId();
         dto.customerName = p.getCustomerName();
         dto.deliveryAddress = p.getDeliveryAddress();
         dto.contactNumber = p.getContactNumber();

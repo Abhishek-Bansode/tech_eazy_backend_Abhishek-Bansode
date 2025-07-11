@@ -36,7 +36,7 @@ public class ParcelService {
 
     private ParcelDTO toParcelDTO(Parcel p) {
         ParcelDTO dto = new ParcelDTO();
-        dto.id = p.getId();
+        dto.id = p.getTrackingId();
         dto.customerName = p.getCustomerName();
         dto.deliveryAddress = p.getDeliveryAddress();
         dto.contactNumber = p.getContactNumber();
@@ -44,4 +44,11 @@ public class ParcelService {
         dto.weight = p.getWeight();
         return dto;
     }
+
+    public ParcelDTO getParcelByTrackingId(String trackingId) {
+        Parcel parcel = parcelRepo.findByTrackingId(trackingId)
+                .orElseThrow(() -> new RuntimeException("Parcel not found"));
+        return toParcelDTO(parcel);
+    }
+
 }
