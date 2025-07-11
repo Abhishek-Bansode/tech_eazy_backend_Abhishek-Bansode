@@ -19,6 +19,18 @@ This project is a backend service for a logistics company that handles **last-mi
 
 ---
 
+## ✅ Features Covered in Assignment 3
+
+### 🔐 Role-Based Access Control (RBAC)
+
+Roles implemented:
+- `ADMIN`
+- `VENDOR`
+
+RBAC is enforced using Spring Security annotations and HTTP method-level restrictions.
+
+---
+
 ## 🛠 Tech Stack
 
 - Java 17
@@ -52,30 +64,37 @@ This project is a backend service for a logistics company that handles **last-mi
 
 ---
 
-### 📤 Parcels
+### 📦 Parcels
 
-| Method | Endpoint                  | Description                      |
-|--------|---------------------------|----------------------------------|
-| POST   | `/api/v1/parcels`         | Create a single parcel *(auth required)* |
-| GET    | `/api/v1/parcels`         | Get all parcels *(auth required)* |
-| GET    | `/api/v1/parcels/{id}`    | Get parcel by tracking ID *(auth required)* |
+| Method | Endpoint               | Access        | Description          |
+|--------|------------------------|---------------|----------------------|
+| GET    | `/api/v1/parcels`      | `ADMIN` only  | Fetch all parcels    |
+| GET    | `/api/v1/parcels/{id}` | `ADMIN` only  | Fetch parcel by ID   |
 
+> ❌ Vendor has **no access** to parcel APIs.
 ---
 
 ### 📁 Delivery Orders
 
-| Method | Endpoint                             | Description                                   |
-|--------|--------------------------------------|-----------------------------------------------|
-| POST   | `/api/v1/delivery-orders/upload`     | Upload file with parcels *(auth required)* |
-| GET    | `/api/v1/delivery-orders/today`      | View today's delivery orders *(auth required)* |
-| GET    | `/api/v1/delivery-orders`            | Filter by `vendor` and `date` *(auth required)* |
+| Method | Endpoint                          | Access          | Description                            |
+|--------|-----------------------------------|-----------------|----------------------------------------|
+| POST   | `/api/v1/vendor/upload`           | `VENDOR` only   | Upload delivery order file             |
+| GET    | `/api/v1/delivery-orders`         | `ADMIN`, `VENDOR` | Fetch delivery orders by vendor/date  |
+
+> ❌ Admin is **not allowed** to upload delivery order files.
+---
+
+### 🌐 Public API
+
+| Method | Endpoint                     | Access | Description                  |
+|--------|------------------------------|--------|------------------------------|
+| GET    | `/api/v1/track/{trackingId}` | Public | Track parcel by tracking ID |
 
 ---
 
 ### 📄 Sample Upload File Format
 
 Each line should represent a parcel (CSV-style):
-
 
 ```
 Alice, 123 Park Ave, Small, 1.2
@@ -98,7 +117,6 @@ cd tech_eazy_backend_Abhishek-Bansode
 ``` bash
 ./mvnw spring-boot:run
 ```
-
 
 ## 🗃️ H2 Database Access
 ### You can view data in-browser:
@@ -162,13 +180,22 @@ src/
 
 ```
 
-## 🧰 Sample Credentials (for testing)
-```json
-{
-  "username": "testuser",
-  "password": "password123"
-}
+## 🧰 Sample Credentials
+1. to register
+    ```json
+    {
+    "username": "vendor1",
+    "password": "vendorpass",
+    "role": "VENDOR"
+    }
+    ```
+2. login 
+    ```json
+    {
+    "username": "vendor1",
+    "password": "vendorpass"
+    }
+    ```
 
-```
 > Use /api/v1/auth/register to create your own test users.
 
